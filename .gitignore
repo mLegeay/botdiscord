@@ -82,3 +82,4 @@ typings/
 .dynamodb/
 
 node_modules/
+.vscode/

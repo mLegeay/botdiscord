@@ -1,3 +1,4 @@
+const settings = require('./settings/settings')
 const Discord = require('discord.js')
 const bot = new Discord.Client()
 const events = require('./commands/events')
@@ -10,4 +11,4 @@ bot.on('message', function (message){
     events.parse(message)
 })
 
-bot.login('NTQ3NzU4NjY1MjI3MTczODk4.D07buA.pc4qZ_EfGiAbSgOfe8YHeYyVy4M')
+bot.login(settings.Token)

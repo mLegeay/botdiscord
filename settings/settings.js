@@ -2,9 +2,11 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 
 try {
-    const config = yaml.safeLoad(fs.readFileSync('settings_prod.yml', 'utf8'));
-} catch (e) {
-    console.log("Create a prod_private.py file in settings");
-}
+    const config = yaml.safeLoad(fs.readFileSync(__dirname + '/settings_prod.yaml', 'utf8'));
 
-const Token = config.Token
+    module.exports = {
+        Token: config['Token']
+    };
+} catch (e) {
+    console.log("Create a settings_prod.yaml file in settings");
+}

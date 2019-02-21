@@ -12,6 +12,6 @@ module.exports = class events extends Command {
         var splited = message.embeds[0].title.split(",")
         var title = splited[0].replace(/ /g, '-')
         console.log(title)
-        Channel.create(title, 'text', 'ceci est un test pour voir la raison')
+        Channel.create(message, title, 'text', null, 'ceci est un test pour voir la raison')
     }
 }

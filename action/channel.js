@@ -4,8 +4,8 @@ const bot = settings.bot
 
 module.exports = class channel {
 
-    static create(name, type, overwrites=null, reason) {
-        bot.createChannel(name, type, overwrites, reason)
+    static create(message, name, type, overwrites=null, reason) {
+        message.guild.createChannel(name, type, overwrites, reason)
     }
 
     static delete(_reason) {

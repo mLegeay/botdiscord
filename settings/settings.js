@@ -8,7 +8,8 @@ try {
     module.exports = {
         bot: new Discord.Client(),
         Token: config['Token'],
-        Webhook: config['Webhook']
+        Webhook: config['Webhook'],
+        Prefix: config['Prefix']
     };
 } catch (e) {
     console.log("Create a settings_prod.yaml file in settings");

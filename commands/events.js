@@ -9,11 +9,21 @@ module.exports = class events extends Command {
         return message.author.id == settings.Webhook
     }
 
-    static action(message) {
+    static async action(message) {
         var splited = message.embeds[0].title.split(",")
         var title = splited[0].replace(/ /g, '-')
-        Role.create(message, title)
-        Channel.create(message, title, 'text')
+        var role = await Role.create(message, title)
+        var permission = [
+            {
+                id: message.guild.defaultRole.id,
+                deny: ['VIEW_CHANNEL']
+            },
+            {
+                id: role.id,
+                allow: ['VIEW_CHANNEL']
+            }
+        ]
+        Channel.create(message, title, 'text', permission)
         var content = title + "\nSi vous souhaitez participer à l'évènement, merci de cliquer sur :white_check_mark:"
         Channel.send(message, content)
             .then(function (message) {

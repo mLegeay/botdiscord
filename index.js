@@ -22,7 +22,7 @@ bot.on('messageReactionAdd', async function (messageReaction, user){
     if(messageReaction.emoji.name != '✅') return;
     var splited = messageReaction.message.content.split("\n");
     var member = await messageReaction.message.guild.fetchMember(user)
-    Role.add(member, messageReaction.message.guild.roles.find('name', splited[0]))
+    Role.add(member, messageReaction.message.guild.roles.find(role => role.name === splited[0]))
 })
 
 bot.login(settings.Token)

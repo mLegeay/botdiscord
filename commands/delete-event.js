@@ -14,8 +14,6 @@ module.exports = class events extends Command {
             return
         }
         var role = message.guild.roles.find(role => role.name.toLowerCase() === message.channel.name)
-        console.log(message.channel.name.toLowerCase())
-        console.log(role)
         if (role != null){
             role.delete()
             message.channel.delete()

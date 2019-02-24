@@ -13,6 +13,7 @@ module.exports = class events extends Command {
         var splited = message.embeds[0].title.split(",")
         var title = splited[0].replace(/ /g, '-')
         var role = await Role.create(message, title)
+        var bot = message.guild.roles.find(role => role.name === "botty")
         var permission = [
             {
                 id: message.guild.defaultRole.id,
@@ -21,9 +22,13 @@ module.exports = class events extends Command {
             {
                 id: role.id,
                 allow: ['VIEW_CHANNEL']
+            },
+            {
+                id: bot.id,
+                allow: ['VIEW_CHANNEL']
             }
         ]
-        Channel.create(message, title, 'text', permission)
+        var new_chan = await message.guild.createChannel(title, 'text', permission)
         var content = title + "\nSi vous souhaitez participer à l'évènement, merci de cliquer sur :white_check_mark:"
         Channel.send(message, content)
             .then(function (message) {
@@ -31,5 +36,6 @@ module.exports = class events extends Command {
             }).catch(function() {
                 console.log("Error on this one")
             });
+        new_chan.send('Veuillez renseigner votre pseudo in game ainsi que votre level svp')
     }
 }

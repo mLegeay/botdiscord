@@ -11,10 +11,9 @@ bot.on('ready', function (){
 
 bot.on('message', function (message){
     events.parse(message)
-    delete_events.parse(message)
     if(message.author.bot) return;
-    if(message.content.indexOf(settings.prefix) !== 0) return;
     delete_events.parse(message)
+    if(message.content.indexOf(settings.prefix) !== 0) return; //doesn't work TODO
 })
 
 bot.on('messageReactionAdd', async function (messageReaction, user){
